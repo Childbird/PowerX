@@ -20,6 +20,7 @@ type PowerXUseCase struct {
 	Organization          *powerx.OrganizationUseCase
 	WechatMP              *powerx.WechatMiniProgramUseCase
 	WechatOA              *powerx.WechatOfficialAccountUseCase
+	SCRM                  *powerx.SCRMUseCase
 }
 
 func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
@@ -49,6 +50,7 @@ func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
 	uc.CustomerAuthorization = powerx.NewAuthorizationCustomerUseCase(db)
 	uc.WechatMP = powerx.NewWechatMiniProgramUseCase(db, conf)
 	uc.WechatOA = powerx.NewWechatOfficialAccountUseCase(db, conf)
+	uc.SCRM = powerx.NewSCRMUseCase(db, conf)
 
 	uc.AutoMigrate(context.Background())
 	uc.AutoInit()
