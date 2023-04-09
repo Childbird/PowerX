@@ -320,17 +320,17 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodPut,
-					Path:    "/types/:id",
+					Path:    "/types/:type",
 					Handler: admindictionary.UpdateDictionaryTypeHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodDelete,
-					Path:    "/types/:id",
+					Path:    "/types/:type",
 					Handler: admindictionary.DeleteDictionaryTypeHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodGet,
-					Path:    "/items",
+					Path:    "/items/:type/:key",
 					Handler: admindictionary.GetDictionaryItemsHandler(serverCtx),
 				},
 				{
@@ -340,12 +340,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 				{
 					Method:  http.MethodPut,
-					Path:    "/items/:id",
+					Path:    "/items/:type/:key",
 					Handler: admindictionary.UpdateDictionaryItemHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodDelete,
-					Path:    "/items/:id",
+					Path:    "/items/:type/:key",
 					Handler: admindictionary.DeleteDictionaryItemHandler(serverCtx),
 				},
 			}...,

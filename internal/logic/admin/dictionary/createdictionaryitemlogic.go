@@ -1,6 +1,7 @@
 package dictionary
 
 import (
+	"PowerX/internal/model"
 	"context"
 
 	"PowerX/internal/svc"
@@ -24,7 +25,20 @@ func NewCreateDictionaryItemLogic(ctx context.Context, svcCtx *svc.ServiceContex
 }
 
 func (l *CreateDictionaryItemLogic) CreateDictionaryItem(req *types.CreateDictionaryItemRequest) (resp *types.CreateDictionaryItemReply, err error) {
-	// todo: add your logic here and delete this line
+	item := model.DataDictionaryItem{
+		Key:         req.Key,
+		Type:        req.Type,
+		Name:        req.Name,
+		Value:       req.Value,
+		Sort:        req.Sort,
+		Description: req.Description,
+	}
 
-	return
+	if err := l.svcCtx.PowerX.DataDictionaryUserCase.CreateDataDictionaryItem(l.ctx, &item); err != nil {
+		return nil, err
+	}
+
+	return &types.CreateDictionaryItemReply{
+		Key: item.Key,
+	}, nil
 }

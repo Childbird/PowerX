@@ -14,13 +14,14 @@ import (
 )
 
 type PowerXUseCase struct {
-	db                    *gorm.DB
-	AdminAuthorization    *powerx.AdminPermsUseCase
-	CustomerAuthorization *powerx.AuthorizationCustomerUseCase
-	Organization          *powerx.OrganizationUseCase
-	WechatMP              *powerx.WechatMiniProgramUseCase
-	WechatOA              *powerx.WechatOfficialAccountUseCase
-	SCRM                  *powerx.SCRMUseCase
+	db                     *gorm.DB
+	DataDictionaryUserCase *powerx.DataDictionaryUseCase
+	AdminAuthorization     *powerx.AdminPermsUseCase
+	CustomerAuthorization  *powerx.AuthorizationCustomerUseCase
+	Organization           *powerx.OrganizationUseCase
+	WechatMP               *powerx.WechatMiniProgramUseCase
+	WechatOA               *powerx.WechatOfficialAccountUseCase
+	SCRM                   *powerx.SCRMUseCase
 }
 
 func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {

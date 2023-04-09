@@ -656,7 +656,7 @@ type GetDictionaryTypesRequest struct {
 }
 
 type DictionaryType struct {
-	Id          int64  `json:"id"`
+	Type        string `json:"type"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
@@ -669,16 +669,17 @@ type GetDictionaryTypesReply struct {
 }
 
 type CreateDictionaryTypeRequest struct {
+	Type        string `json:"type"`
 	Name        string `json:"name"`
 	Description string `json:"description,optional"`
 }
 
 type CreateDictionaryTypeReply struct {
-	Id int64 `json:"id"`
+	Type string `json:"type"`
 }
 
 type UpdateDictionaryTypeRequest struct {
-	Id          int64  `path:"id"`
+	Type        string `path:"type"`
 	Name        string `json:"name"`
 	Description string `json:"description,optional"`
 }
@@ -688,22 +689,22 @@ type UpdateDictionaryTypeReply struct {
 }
 
 type DeleteDictionaryTypeRequest struct {
-	Id int64 `path:"id"`
+	Type string `path:"type"`
 }
 
 type DeleteDictionaryTypeReply struct {
-	Id int64 `json:"id"`
+	Type string `json:"type"`
 }
 
 type GetDictionaryItemsRequest struct {
-	TypeId    int64 `form:"typeId"`
-	PageIndex int   `form:"pageIndex,optional"`
-	PageSize  int   `form:"pageSize,optional"`
+	Types     []string `form:"type,optional"`
+	PageIndex int      `form:"pageIndex,optional"`
+	PageSize  int      `form:"pageSize,optional"`
 }
 
 type DictionaryItem struct {
-	Id          int64  `json:"id"`
-	TypeId      int64  `json:"typeId"`
+	Key         string `json:"key"`
+	Type        string `json:"type"`
 	Name        string `json:"name"`
 	Value       string `json:"value"`
 	Description string `json:"description"`
@@ -717,21 +718,25 @@ type GetDictionaryItemsReply struct {
 }
 
 type CreateDictionaryItemRequest struct {
-	TypeId      int64  `json:"typeId"`
+	Key         string `json:"key"`
+	Type        string `json:"type"`
 	Name        string `json:"name"`
 	Value       string `json:"value"`
+	Sort        int    `json:"sort"`
 	Description string `json:"description,optional"`
 }
 
 type CreateDictionaryItemReply struct {
-	Id int64 `json:"id"`
+	Key  string `json:"key"`
+	Type string `json:"type"`
 }
 
 type UpdateDictionaryItemRequest struct {
-	Id          int64  `path:"id"`
-	TypeId      int64  `json:"typeId"`
+	Key         string `path:"key"`
+	Type        string `path:"type"`
 	Name        string `json:"name"`
 	Value       string `json:"value"`
+	Sort        int    `json:"sort"`
 	Description string `json:"description,optional"`
 }
 
@@ -740,11 +745,13 @@ type UpdateDictionaryItemReply struct {
 }
 
 type DeleteDictionaryItemRequest struct {
-	Id int64 `path:"id"`
+	Key  string `path:"key"`
+	Type string `path:"type"`
 }
 
 type DeleteDictionaryItemReply struct {
-	Id int64 `json:"id"`
+	Key  string `json:"key"`
+	Type string `json:"type"`
 }
 
 type GetOpportunityListRequest struct {
